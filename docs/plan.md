@@ -73,11 +73,11 @@ Used by: solar.js (for planet names), quiz.js (for random questions)
 - [ ] Test API manually in browser console
 - [x] Set up shared CSS variables in style.css
 
-### Phase 2 — Homepage Animation (Days 2–4)
-- [ ] CSS 3D solar system: sun + 8 orbiting planets
-- [ ] Planet hover tooltips
-- [ ] Click → navigate to planet.html
-- [ ] Responsive animation
+### Phase 2 — Homepage Animation (Days 2–4) ✅
+- [x] CSS 3D solar system: sun + 8 orbiting planets
+- [x] Planet hover tooltips
+- [x] Click → navigate to planet.html
+- [x] Responsive animation
 
 ### Phase 3 — Planet Detail Page (Days 3–5)
 - [ ] api.js: getPlanet() + getAllPlanets()

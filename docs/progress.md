@@ -6,9 +6,9 @@
 ---
 
 ## Current Status
-**Phase:** 1 — Setup ✅ complete → ready for Phase 2
+**Phase:** 2 — Homepage Animation ✅ complete → ready for Phase 3
 **Last updated:** 2026-04-28
-**Next session goal:** Phase 2 — CSS 3D solar system animation (solar.css + solar.js)
+**Next session goal:** Phase 3 — Planet detail page (api.js + planet.js)
 
 ---
 
@@ -22,12 +22,12 @@
 
 ### CSS
 - [x] css/style.css — variables + reset + shared layout (all 3 breakpoints)
-- [ ] css/solar.css — structure stubbed, animation pending (Phase 2)
+- [x] css/solar.css — full 3D animation + orbits + tooltips + star field + responsive
 - [ ] css/quiz.css — structure stubbed, styles pending (Phase 4)
 
 ### JavaScript
-- [x] js/api.js — getPlanet() + getAllPlanets() stubs written (Phase 3 full impl)
-- [ ] js/solar.js — stub only (Phase 2)
+- [x] js/api.js — getPlanet() + getAllPlanets() ready (full impl tested in Phase 3)
+- [x] js/solar.js — builds 8 orbits + planets + star field + click navigation
 - [ ] js/planet.js — stub only (Phase 3)
 - [ ] js/quiz.js — stub only (Phase 4)
 - [ ] js/scores.js — stub only (Phase 4)
@@ -56,11 +56,26 @@
 **Blockers:** none
 **Next:** Phase 2 — CSS 3D solar system animation
 
-### Session 2 — [date]
-**Goal:**
+### Session 2 — 2026-04-28
+**Goal:** Phase 2 — Homepage solar system animation
 **Completed:**
-**Blockers:**
-**Next:**
+- index.html: moved hint-text inside .solar-scene + fixed Hebrew typo
+- css/solar.css: full 3D scene with `perspective: 1200px` + `rotateX(22deg)` tilt
+  - Orbit rings (dashed) + rotation animation per planet
+  - Counter-rotation on each planet so tooltips stay upright
+  - Planet button styling: radial-gradient body, hover glow, focus ring (a11y)
+  - Saturn rings via ::before pseudo-element
+  - Star field via `.starfield` + `.star` with `--star-opacity` twinkle
+  - Sun pulse animation
+  - Responsive scale variable (--system-scale: 1 / 0.72 / 0.5)
+  - prefers-reduced-motion support
+- js/solar.js: PLANETS data array (name + Hebrew label + radius + size + duration + color)
+  - buildPlanets() generates orbit + planet-position + button per planet
+  - Random negative animation-delay so planets start at different positions
+  - Click handler navigates to planet.html?name={name}
+  - buildStarfield() generates 180 stars with random pos/size/opacity/delay
+**Blockers:** none — ready for user to verify animation in browser
+**Next:** Phase 3 — planet.js (URL param parse + render API data)
 
 ### Session 3 — [date]
 **Goal:**

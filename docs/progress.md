@@ -6,34 +6,34 @@
 ---
 
 ## Current Status
-**Phase:** 2 — Homepage Animation ✅ complete → ready for Phase 3
+**Phase:** 4 — Quiz + Scores ✅ complete → ready for Phase 5 (Polish)
 **Last updated:** 2026-04-28
-**Next session goal:** Phase 3 — Planet detail page (api.js + planet.js)
+**Next session goal:** Phase 5 — responsive testing, console error check, code cleanup
 
 ---
 
 ## File Completion Status
 
 ### HTML Pages
-- [x] index.html — skeleton complete
-- [x] planet.html — skeleton complete (loading / error / empty states included)
-- [x] quiz.html — skeleton complete (HUD, progress bar, question block, answer list, end screen)
-- [x] scores.html — skeleton complete (sort controls, table, empty state, confirm dialog)
+- [x] index.html — complete
+- [x] planet.html — complete (loading / error / empty / card all implemented)
+- [x] quiz.html — complete (HUD, progress bar, question block, answer list, feedback, end screen)
+- [x] scores.html — complete (sort controls, table, empty state, confirm dialog)
 
 ### CSS
-- [x] css/style.css — variables + reset + shared layout (all 3 breakpoints)
+- [x] css/style.css — variables + reset + shared layout + planet card styles (all 3 breakpoints)
 - [x] css/solar.css — full 3D animation + orbits + tooltips + star field + responsive
-- [ ] css/quiz.css — structure stubbed, styles pending (Phase 4)
+- [x] css/quiz.css — quiz game, scores table, confirm dialog, full responsive
 
 ### JavaScript
-- [x] js/api.js — getPlanet() + getAllPlanets() ready (full impl tested in Phase 3)
+- [x] js/api.js — getPlanet() + getAllPlanets() (no key, parallel fetch)
 - [x] js/solar.js — builds 8 orbits + planets + star field + click navigation
-- [ ] js/planet.js — stub only (Phase 3)
-- [ ] js/quiz.js — stub only (Phase 4)
-- [ ] js/scores.js — stub only (Phase 4)
+- [x] js/planet.js — URL param parse, fetch, render all stats, planet visual sphere, quiz link
+- [x] js/quiz.js — 5 questions from live API, 15s timer, 4-choice answers, feedback, LocalStorage save
+- [x] js/scores.js — reads solarQuizScores, sort (3 modes), clear with confirm dialog, empty state
 
 ### Other
-- [ ] README.md — complete
+- [x] README.md — complete (Hebrew)
 - [ ] Responsive: mobile tested
 - [ ] Responsive: tablet tested
 - [ ] Responsive: desktop tested
@@ -74,28 +74,83 @@
   - Random negative animation-delay so planets start at different positions
   - Click handler navigates to planet.html?name={name}
   - buildStarfield() generates 180 stars with random pos/size/opacity/delay
-**Blockers:** none — ready for user to verify animation in browser
+**Blockers:** none
 **Next:** Phase 3 — planet.js (URL param parse + render API data)
 
-### Session 3 — [date]
-**Goal:**
+### Session 3 — 2026-04-28
+**Goal:** Phase 3 — Planet detail page
 **Completed:**
-**Blockers:**
-**Next:**
+- js/planet.js: full implementation
+  - getParam() reads ?name= from URL
+  - Validates against VALID planet list → empty state if unknown
+  - Calls getPlanet() → loading / error / empty states
+  - renderPlanet(): fills all 8 stat DDs (gravity, radius, temp, moons, orbit, rotation, discoveredBy, discoveryDate)
+  - Converts Kelvin → Celsius for temperature
+  - Hebrew planet names + body type labels
+  - Sets --planet-accent CSS variable per planet for card coloring
+  - buildPlanetVisual(): injects animated CSS sphere into card header
+  - Saturn gets ringed class on sphere
+  - Wires btn-quiz href → quiz.html?name={planet}
+  - Updates document.title with Hebrew planet name
+- css/style.css: added planet card styles
+  - .planet-card with cardIn animation
+  - .planet-card__header flex layout (sphere + name side by side)
+  - .planet-stats 2-col CSS Grid with hover glow per stat row
+  - .planet-visual animated sphere with radial-gradient + box-shadow
+  - Saturn ring via ::before
+  - Responsive: stats grid → 1 col on mobile, header stacks on tablet
+**Blockers:** none
+**Next:** Phase 4 — quiz.js + scores.js + quiz.css
+
+### Session 4 — 2026-04-28
+**Goal:** Phase 4 — Quiz + Scores
+**Completed:**
+- js/quiz.js: full quiz implementation
+  - 5 question generators: gravity, radius, moons, orbit, temperature
+  - generateQuestions() runs all generators on all 8 planets, shuffles pool, picks 5
+  - 15-second countdown timer with urgent pulse when ≤5s
+  - 4 multiple-choice buttons with correct/wrong CSS states
+  - Answer feedback strip with fact text
+  - Schedules next question 2.2s after answer or timeout
+  - End screen with final score, save button, play-again, back-to-planet
+  - saveScore() writes {planet, score, total, date, ts} to solarQuizScores in LocalStorage
+  - playAgain() resets state and regenerates questions
+  - focusedPlanetName read from ?name= param (set by planet.html quiz button)
+- js/scores.js: full scores page
+  - loadScores() from solarQuizScores LocalStorage key
+  - sortScores() supports date-desc / score-desc / score-asc
+  - scoreEmoji() shows 🏆⭐👍🔄 based on percentage
+  - renderScores() builds table rows, shows empty state if no scores
+  - Clear button opens native <dialog>, confirms before localStorage.removeItem()
+  - Backdrop click also closes dialog
+- css/quiz.css: full quiz + scores styles
+  - HUD 3-col grid, progress bar with gradient fill
+  - Question block, 2-col answer grid
+  - Answer button states: default / hover / correct / wrong / disabled
+  - Feedback strip with slideUp animation
+  - End screen card, scores table, sort select, confirm dialog
+  - prefers-reduced-motion support
+  - Full responsive: tablet + mobile breakpoints
+- scores.html: added quiz.css link (was missing)
+- README.md: written in Hebrew
+**Blockers:** none
+**Next:** Phase 5 — test all 3 breakpoints, confirm 0 console errors, code cleanup
 
 ---
 
 ## Known Issues / Decisions Pending
-- [ ] Confirm with lecturer: is Three.js allowed?
-- [ ] Decide: Hebrew or English UI labels? (currently Hebrew)
-- [ ] Decide: how many quiz questions per round? (currently 5)
-- [ ] scores.js added (not in original CLAUDE.md file list) — confirm this is ok or merge into quiz.js
+- [ ] Confirm with lecturer: is Three.js allowed? (currently using pure CSS 3D — safe)
+- [x] Hebrew UI labels — confirmed, all labels are Hebrew
+- [x] Quiz questions per round — confirmed: 5
+- [x] scores.js added as separate file — confirmed ok
 
 ---
 
 ## Notes for Claude
 - Planet names for the API: mercury, venus, earth, mars, jupiter, saturn, uranus, neptune
 - URL pattern for planet page: planet.html?name=mars
-- All quiz questions must be generated dynamically from API data
-- LocalStorage key for scores: "solarQuizScores"
-- scores.html uses js/scores.js (added in session 1 — not in original CLAUDE.md spec)
+- All quiz questions generated dynamically from API data ✅
+- LocalStorage key for scores: "solarQuizScores" ✅
+- scores.html uses js/scores.js + css/quiz.css (quiz.css has scores table styles too)
+- planet.html uses js/api.js + js/planet.js
+- quiz.html uses js/api.js + js/quiz.js + css/quiz.css

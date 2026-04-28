@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>פרטי כוכב לכת | Planet Detail</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">&#x2609; מערכת השמש</h1>
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul>
+          <li><a href="index.html" class="nav-link">בית</a></li>
+          <li><a href="quiz.html" class="nav-link">חידון</a></li>
+          <li><a href="scores.html" class="nav-link">ניקוד</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="planet-main">
+
+    <!-- Loading state -->
+    <div class="state-loading" id="state-loading" aria-live="polite" aria-busy="true">
+      <div class="spinner" role="status">
+        <span class="sr-only">טוען נתונים...</span>
+      </div>
+      <p>טוען נתונים...</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="state-error" id="state-error" hidden aria-live="assertive">
+      <p class="error-icon" aria-hidden="true">&#x26A0;&#xFE0F;</p>
+      <p class="error-message" id="error-message">שגיאה בטעינת הנתונים.</p>
+      <a href="index.html" class="btn btn-secondary">חזרה לדף הבית</a>
+    </div>
+
+    <!-- Empty / unknown planet state -->
+    <div class="state-empty" id="state-empty" hidden>
+      <p class="empty-icon" aria-hidden="true">&#x1F50D;</p>
+      <p>לא נמצא כוכב לכת בשם זה.</p>
+      <a href="index.html" class="btn btn-secondary">חזרה לדף הבית</a>
+    </div>
+
+    <!-- Planet detail card (shown when data loaded) -->
+    <article class="planet-card" id="planet-card" hidden aria-labelledby="planet-name">
+      <div class="planet-card__header">
+        <h2 class="planet-name" id="planet-name"><!-- js --></h2>
+        <p class="planet-type" id="planet-type"><!-- js --></p>
+      </div>
+
+      <div class="planet-card__body">
+        <dl class="planet-stats">
+          <div class="stat-row">
+            <dt>כוח משיכה</dt>
+            <dd id="stat-gravity">—</dd>
+          </div>
+          <div class="stat-row">
+            <dt>רדיוס ממוצע</dt>
+            <dd id="stat-radius">—</dd>
+          </div>
+          <div class="stat-row">
+            <dt>טמפרטורה ממוצעת</dt>
+            <dd id="stat-temp">—</dd>
+          </div>
+          <div class="stat-row">
+            <dt>מספר ירחים</dt>
+            <dd id="stat-moons">—</dd>
+          </div>
+          <div class="stat-row">
+            <dt>מסלול הקפה (ימים)</dt>
+            <dd id="stat-orbit">—</dd>
+          </div>
+          <div class="stat-row">
+            <dt>זמן סיבוב (שעות)</dt>
+            <dd id="stat-rotation">—</dd>
+          </div>
+          <div class="stat-row">
+            <dt>התגלה על ידי</dt>
+            <dd id="stat-discovered-by">—</dd>
+          </div>
+          <div class="stat-row">
+            <dt>תאריך גילוי</dt>
+            <dd id="stat-discovery-date">—</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="planet-card__actions">
+        <a href="index.html" class="btn btn-secondary">&#x2190; חזרה</a>
+        <a href="#" class="btn btn-primary" id="btn-quiz">התחל חידון &#x1F9E0;</a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Solar System Quiz — פרויקט גמר</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/planet.js"></script>
+</body>
+</html>

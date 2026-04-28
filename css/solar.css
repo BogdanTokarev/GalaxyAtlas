@@ -1,0 +1,70 @@
+/* =============================================
+   Solar System — 3D animation styles
+   Phase 2 implementation goes here
+   ============================================= */
+
+.solar-scene {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - var(--header-height) - 80px);
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.solar-system {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  transform-style: preserve-3d;
+}
+
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff7a0, var(--color-sun) 60%, #e67e00);
+  box-shadow: 0 0 40px 10px rgba(255, 213, 79, 0.6);
+}
+
+.hint-text {
+  text-align: center;
+  color: var(--color-text-dim);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-md);
+}
+
+/* =============================================
+   Responsive — Tablet (≈900px)
+   ============================================= */
+@media (max-width: 900px) {
+  .solar-system {
+    width: 420px;
+    height: 420px;
+  }
+
+  .sun {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/* =============================================
+   Responsive — Mobile (≤600px)
+   ============================================= */
+@media (max-width: 600px) {
+  .solar-system {
+    width: 300px;
+    height: 300px;
+  }
+
+  .sun {
+    width: 32px;
+    height: 32px;
+  }
+}

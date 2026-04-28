@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>חידון | Quiz</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/quiz.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">&#x2609; מערכת השמש</h1>
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul>
+          <li><a href="index.html" class="nav-link">בית</a></li>
+          <li><a href="quiz.html" class="nav-link active">חידון</a></li>
+          <li><a href="scores.html" class="nav-link">ניקוד</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="quiz-main">
+
+    <!-- Loading state -->
+    <div class="state-loading" id="state-loading" aria-live="polite" aria-busy="true">
+      <div class="spinner" role="status">
+        <span class="sr-only">טוען שאלות...</span>
+      </div>
+      <p>טוען שאלות מה-API...</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="state-error" id="state-error" hidden aria-live="assertive">
+      <p class="error-icon" aria-hidden="true">&#x26A0;&#xFE0F;</p>
+      <p class="error-message" id="error-message">לא ניתן לטעון את שאלות החידון.</p>
+      <a href="index.html" class="btn btn-secondary">חזרה לדף הבית</a>
+    </div>
+
+    <!-- Quiz game view -->
+    <section class="quiz-game" id="quiz-game" hidden aria-label="חידון מערכת השמש">
+
+      <div class="quiz-hud">
+        <div class="quiz-hud__score">
+          <span class="hud-label">ניקוד</span>
+          <span class="hud-value" id="score-display">0</span>
+        </div>
+        <div class="quiz-hud__progress">
+          <span class="hud-label">שאלה</span>
+          <span class="hud-value" id="question-counter">1 / 5</span>
+        </div>
+        <div class="quiz-hud__timer" aria-label="זמן נותר">
+          <span class="hud-label">זמן</span>
+          <span class="hud-value timer-value" id="timer-display">15</span>
+        </div>
+      </div>
+
+      <div class="quiz-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+        <div class="quiz-progress-bar__fill" id="progress-fill"></div>
+      </div>
+
+      <div class="question-block">
+        <p class="question-planet" id="question-planet"><!-- planet name --></p>
+        <h2 class="question-text" id="question-text"><!-- question --></h2>
+      </div>
+
+      <ul class="answer-options" id="answer-options" role="list">
+        <!-- 4 option buttons injected by quiz.js -->
+      </ul>
+
+      <div class="answer-feedback" id="answer-feedback" hidden aria-live="polite">
+        <p class="feedback-message" id="feedback-message"></p>
+        <p class="feedback-fact" id="feedback-fact"></p>
+      </div>
+
+    </section>
+
+    <!-- End screen -->
+    <section class="quiz-end" id="quiz-end" hidden aria-label="סיום חידון">
+      <h2 class="end-title">סיום החידון! &#x1F3C6;</h2>
+      <p class="end-score">
+        קיבלת <strong id="final-score">0</strong> מתוך <strong>5</strong>
+      </p>
+
+      <div class="end-actions">
+        <button class="btn btn-primary" id="btn-save-score">שמור ניקוד</button>
+        <button class="btn btn-secondary" id="btn-play-again">שחק שוב</button>
+        <a href="index.html" class="btn btn-ghost" id="btn-back-planet">חזרה לכוכב</a>
+      </div>
+
+      <p class="save-confirmation" id="save-confirmation" hidden aria-live="polite">
+        &#x2705; הניקוד נשמר!
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Solar System Quiz — פרויקט גמר</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

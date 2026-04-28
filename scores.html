@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ניקוד גבוה | High Scores</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">&#x2609; מערכת השמש</h1>
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul>
+          <li><a href="index.html" class="nav-link">בית</a></li>
+          <li><a href="quiz.html" class="nav-link">חידון</a></li>
+          <li><a href="scores.html" class="nav-link active">ניקוד</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="scores-main">
+    <h2 class="page-title">&#x1F3C6; ניקוד גבוה</h2>
+
+    <!-- Controls: sort + clear -->
+    <div class="scores-controls" id="scores-controls">
+      <div class="sort-controls">
+        <label for="sort-select">מיין לפי:</label>
+        <select id="sort-select" class="sort-select">
+          <option value="date-desc">תאריך — חדש ראשון</option>
+          <option value="score-desc">ניקוד — גבוה ראשון</option>
+          <option value="score-asc">ניקוד — נמוך ראשון</option>
+        </select>
+      </div>
+      <button class="btn btn-danger" id="btn-clear-scores">&#x1F5D1; נקה ניקוד</button>
+    </div>
+
+    <!-- Empty state -->
+    <div class="state-empty" id="state-empty" hidden>
+      <p class="empty-icon" aria-hidden="true">&#x1F4CA;</p>
+      <p>עדיין אין ניקוד שמור.</p>
+      <a href="quiz.html" class="btn btn-primary">שחק עכשיו!</a>
+    </div>
+
+    <!-- Scores table -->
+    <div class="scores-table-wrapper" id="scores-table-wrapper" hidden>
+      <table class="scores-table" aria-label="טבלת ניקוד">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">כוכב לכת</th>
+            <th scope="col">ניקוד</th>
+            <th scope="col">תאריך</th>
+          </tr>
+        </thead>
+        <tbody id="scores-tbody">
+          <!-- rows injected by scores.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Clear confirmation dialog -->
+    <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="dialog-title">
+      <h3 id="dialog-title">מחיקת כל הניקודים</h3>
+      <p>האם אתה בטוח? פעולה זו לא ניתנת לביטול.</p>
+      <div class="dialog-actions">
+        <button class="btn btn-danger" id="btn-confirm-clear">כן, מחק</button>
+        <button class="btn btn-secondary" id="btn-cancel-clear">ביטול</button>
+      </div>
+    </dialog>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Solar System Quiz — פרויקט גמר</p>
+  </footer>
+
+  <script src="js/scores.js"></script>
+</body>
+</html>

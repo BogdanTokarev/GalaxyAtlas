@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מערכת השמש | Solar System</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/solar.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">&#x2609; מערכת השמש</h1>
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul>
+          <li><a href="index.html" class="nav-link active">בית</a></li>
+          <li><a href="quiz.html" class="nav-link">חידון</a></li>
+          <li><a href="scores.html" class="nav-link">ניקוד</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="solar-scene" aria-label="אנימציית מערכת השמש">
+      <div class="solar-system" id="solar-system">
+        <div class="sun" role="img" aria-label="השמש"></div>
+        <!-- orbit + planet divs injected by solar.js -->
+      </div>
+    </section>
+
+    <p class="hint-text">לחץ על כוכב לחץ לפרטים</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Solar System Quiz — פרויקט גמר</p>
+  </footer>
+
+  <script src="js/solar.js"></script>
+</body>
+</html>
